@@ -25,3 +25,12 @@
   <%= f.label :description %>
   <%= f.text_area :description, :class => "form-control" %>
 </div>
+
+<div class="btn-group" data-toggle="buttons">
+<% Event::STATUS.each do |status| %>
+  <label class="btn btn-default <%= (status == f.object.status)? 'active':''%>">
+    <%= f.radio_button :status, status %>
+    <%= t(status, :scope => "event.status") %>
+  </label>
+  <% end %>
+</div>
