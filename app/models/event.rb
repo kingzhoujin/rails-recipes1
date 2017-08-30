@@ -3,7 +3,8 @@ class Event < ApplicationRecord
  validates_presence_of :name, :friendly_id
  validates_uniqueness_of :friendly_id
  validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
-
+ has_many :tickets, :dependent => :destroy
+ accepts_nested_attributes_for :tickets, :allow_destroy => true, :reject_if => :all_blank
     def to_param
       self.friendly_id
     end
